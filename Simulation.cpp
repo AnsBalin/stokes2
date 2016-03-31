@@ -5,10 +5,6 @@
 #include <zconf.h>
 #include "Simulation.h"
 
-unsigned int Simulation::get_simID() const{
-
-    return _simID;
-}
 
 void Simulation::run(unsigned int timeSteps) {
 
@@ -16,8 +12,10 @@ void Simulation::run(unsigned int timeSteps) {
     while( timeSteps-- > 0 ){
 
         for( auto entity : _entities ){
-            entity.computeForces( const SDVector& _r, SDVector& _f );
-            entity.computeNoises( SDVector& _dw );
+            //entity.computeForces( const SDVector& _r, SDVector& _f );
+            entity.computeForces( _r, _f, _entities );
+            //entity.computeNoises( SDVector& _dw );
+            entity.computeNoises( _dw );
         }
 
 
@@ -30,24 +28,9 @@ void Simulation::run(unsigned int timeSteps) {
 
 virtual void Simulation::update(){
 
-    _r +=
+    _r += _f * _dt + _dw;
 
 };
 
 
 
-class Foo{
-
-public:
-
-    void update() {
-        for( auto dataModifier : _dataModifierList ) {
-            dataModifier.modify( Data& _data );
-        }
-    };
-
-private:
-    Data _data;
-    std::vector<DataModifier> _dataModifierList;
-
-};

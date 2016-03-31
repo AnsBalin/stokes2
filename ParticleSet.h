@@ -8,6 +8,8 @@
 
 class ParticleSet {
 
+public:
+
 
 private:
     int _m;

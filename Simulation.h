@@ -17,14 +17,14 @@ class Simulation {
 
 public:
 
-    Simulation(unsigned int simID) : _simID(simID) {};
+    Simulation(  ) : simID( _numberOfSims++ ) {};
     void run(unsigned int timeSteps);
-    unsigned int get_simID() const;
 
-    const int _simulationID;
+
+    const int simID;
 
 protected:
-    unsigned int _simID;
+
     SDVector _r;
     SDVector _f;
     SDVector _dw;
@@ -35,6 +35,7 @@ protected:
 
 private:
     virtual void update();
+    static int _numberOfSims = 0;
 
 
 };
@@ -47,3 +48,6 @@ private:
 
 
 #endif //STOKES_SIMULATION_H
+
+
+
