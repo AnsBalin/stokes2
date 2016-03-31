@@ -19,7 +19,7 @@ public:
 
     Simulation(  ) : simID( _numberOfSims++ ) {};
     void run(unsigned int timeSteps);
-
+    void addParticle( SDVector particlePosition );
 
     const int simID;
 

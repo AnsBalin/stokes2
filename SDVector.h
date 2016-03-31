@@ -33,10 +33,11 @@ public:
     double operator*(const SDVector& rvec) const;
     void print() const { _elems.print(); };
 
+    const int _dim;
 
 private:
 
-    int _dim;
+
     int _N;
     vec _elems;
 };

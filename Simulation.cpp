@@ -11,19 +11,26 @@ void Simulation::run(unsigned int timeSteps) {
 
     while( timeSteps-- > 0 ){
 
-        for( auto entity : _entities ){
-            //entity.computeForces( const SDVector& _r, SDVector& _f );
-            entity.computeForces( _r, _f, _entities );
-            //entity.computeNoises( SDVector& _dw );
-            entity.computeNoises( _dw );
-        }
 
+        //SDVector separations = entity::calculateSeparations( _entities );
+        for( auto entity : _entities ){
+
+            //entity.computeForces( const SDVector& _r, SDVector& _f );
+            //entity.computeInternalForces( _r, _f);
+
+            //entity.computeNoises( SDVector& _dw );
+            //entity.computeNoises( _dw );
+        }
 
         update();
 
     }
 
+};
 
+void Simulation::addParticle(SDVector particlePosition) {
+
+// ????????????????????????????????????????????????
 };
 
 virtual void Simulation::update(){
@@ -32,5 +39,9 @@ virtual void Simulation::update(){
 
 };
 
+virtual void HydroSimulation::update(){
 
+    _r += _f * _dt + _dw;
+
+};
 
